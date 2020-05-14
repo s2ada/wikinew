@@ -1,6 +1,0 @@
-- name: ping
-  hosts: mediawiki
-  become: yes
-  tasks:
-    - name: ping_machine_cible
-      ping:
