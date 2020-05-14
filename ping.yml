@@ -1,5 +1,5 @@
 - name: ping
-  hosts: mediawiki
+  hosts: localhost
   become: yes
   tasks:
     - name: ping_machine_cible
