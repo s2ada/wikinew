@@ -1,4 +1,4 @@
-saada_serv ansible_host=192.168.56.47 ansible_user=root
+saada_serv ansible_host=192.168.56.101 ansible_user=root
 
 [mediawiki]
 saada_serv
