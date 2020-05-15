@@ -1,6 +1,11 @@
+- name: update
+  yum:
+    name: '*'
+    state: latest
+
 - name: Install nginx
   yum:
-    name: nginx
+    name: http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centOS-7-0.el7.ngx.noarch.rpm
     state: present
 
 - name: change UID user nginx
