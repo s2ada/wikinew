@@ -1,4 +1,4 @@
-centos_serv ansible_host=192.168.56.101 ansible_user=root
+centos_serv ansible_host=192.168.1.47 ansible_user=root
 
 [wiki]
 centos_serv
