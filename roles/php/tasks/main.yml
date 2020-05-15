@@ -1,0 +1,27 @@
+- name: Install PHP
+  package:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+      - httpd
+      - php
+      - php-xml
+      - php-mysql
+      - php-gd
+      - php-intl
+      - php-mbstring
+      - php-fpm
+      - php-xcache
+      - php-pear-MDB2-Driver-mysql
+
+- name: Remove httpd
+  yum:
+    name: httpd
+    state: absent
+
+- name: enable service php-fpm and ensure it is not masked
+  systemd:
+    name: php-fpm
+    enabled: yes
+    masked: no

@@ -1,0 +1,15 @@
+- name: Create new nginx.conf
+  template:
+    src: roles/config_nginx/templates/new_nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+#  notify: restart nginx
+
+- name: Create new www.conf
+  template:
+    src: roles/config_nginx/templates/new_www.conf.j2
+    dest: /etc/php-fpm.d/www.conf
+#  notify: restart php-fpm
+
+
+- name: Create symlink for de appli vers usr/share/nginx/html old new
+  command: ln -s /appli/projects/wikib/nginx/version1/wiki_devops /usr/share/nginx/html/wikib

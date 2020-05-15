@@ -1,0 +1,65 @@
+- name: Install Mariadb
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - mariadb-server
+    - MySQL-python
+
+- name: enable service mariadb and ensure it is not masked
+  systemd:
+    name: mariadb
+    enabled: yes
+    masked: no
+
+- name: start mariadb
+  service:
+    name: mariadb
+    state: started
+
+- name: Create mariadb /etc/my.cnf
+  template:
+    src: roles/mariadb/templates/maria_my.cnf.j2
+    dest: /etc/my.cnf
+    #notify: restart mariadb
+
+- name: Generate new root password
+  command: openssl rand -hex 7
+  args:
+    creates: /root/.my.cnf
+  register: mysql_new_root_pass
+
+- name: Remove anonymous users
+  mysql_user:
+    name: ""
+    state: absent
+  when: mysql_new_root_pass.changed
+
+- name: Remove test database
+  mysql_db:
+    name: test
+    state: absent
+  when: mysql_new_root_pass.changed
+
+- name: Output new root password
+  debug:
+    msg: "New root password is {{mysql_new_root_pass}}"
+  when: mysql_new_root_pass.changed
+
+- name: Update root password
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql_new_root_pass.stdout }}"
+  loop:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+  when: mysql_new_root_pass.changed
+
+- name: Create /root/.my.cnf
+  template:
+    src: roles/mariadb/templates/my.cnf.j2
+    dest: /root/.my.cnf
+  when: mysql_new_root_pass.changed

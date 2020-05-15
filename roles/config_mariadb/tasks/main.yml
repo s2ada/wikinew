@@ -1,0 +1,42 @@
+- name: stop mariadb
+  service:
+    name: mariadb
+    state: stopped
+
+- name: Synchronization origin database config and FS config
+  synchronize:
+    src: /var/lib/mysql
+    dest: /appli/projects/wikib/mariadb/mysql
+  delegate_to: "{{ inventory_hostname }}"
+
+- name: Rename mysql en mysql.bak
+  copy:
+    remote_src: True
+    src: /var/lib/mysql
+    dest: /var/lib/mysql.bak
+
+#- name: Synchronization origin database config and FS config
+#  command: ln -s /appli/projects/wikib/mariadb/mysql /var/lib/mysql
+
+
+
+- name: Create mariadb my.cnf
+  template:
+    src: roles/config_mariadb/templates/new_maria_my.cnf.j2
+    dest: /etc/my.cnf
+  notify: restart mariadb
+
+
+
+
+#- name: Create symlink for database old new
+#  file:
+#    path: /appli/projects/wikib/mariadb/mysql
+#    dest: /var/lib/mysql
+#    state: link
+#    force: yes
+
+#- name: delete /var/lib/mysql
+#  file:
+#    path: /var/lib/mysql
+#    state: absent

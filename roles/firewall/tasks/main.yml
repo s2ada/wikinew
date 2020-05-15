@@ -1,0 +1,14 @@
+- firewalld:
+    service: http
+    zone: public
+    permanent: yes
+    state: enabled
+
+- firewalld:
+    service: https
+    zone: public
+    permanent: yes
+    state: enabled
+
+- name: reload du firewall
+  command: firewall-cmd --reload

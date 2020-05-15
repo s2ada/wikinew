@@ -1,0 +1,10 @@
+- name: common packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+      - unzip
+      - rsync
+      - firewalld
+      - vim
+      - psmisc

@@ -1,0 +1,59 @@
+- name: Creer le répertoire utilisateur de webadm
+  file:
+    path: /home/webadm
+    state: directory
+    recurse: yes
+
+- name: Creer le repertoire de la version 1 dans LIVR
+  file:
+    path: /appli/LIVR/version1
+    state: directory
+    recurse: yes
+
+- name: Creer le repertoire de la version 2 dans LIVR
+  file:
+    path: /appli/LIVR/version2
+    state: directory
+    recurse: yes
+
+- name: Creer des repertoires pour la base mariadb
+  file:
+    path: /appli/projects/wikib/mariadb/
+    state: directory
+    recurse: yes
+
+- name: Creer le répertoire images pour le serveur web de la V1.0
+  file:
+    path: /appli/projects/wikib/nginx/version1/data/
+    state: directory
+    recurse: yes
+
+- name: Creer le répertoire contenant le wiki
+  file:
+    path: /appli/projects/wikib/nginx/version1/wiki_devops
+    state: directory
+    recurse: yes
+
+- name: Creer le répertoire pour le serveur web de la V1.1
+  file:
+    path: /appli/projects/wikib/nginx/version2
+    state: directory
+    recurse: yes
+
+- name: Creer le répertoire data pour le wiki
+  file:
+    path: /appli/data
+    state: directory
+    recurse: yes
+
+- name: Creer le repertoire des var pour le serveur web
+  file:
+    path: /var/projects/wikib/nginx
+    state: directory
+    recurse: yes
+
+- name: Creer le repertoire des var pour la base de données
+  file:
+    path: /var/projects/wikib/mariadb
+    state: directory
+    recurse: yes

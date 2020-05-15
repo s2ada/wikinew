@@ -1,0 +1,9 @@
+- name: Copier md2_01.00.00_PRES.tar.gz dans LIVR
+  copy:
+    src: files/md2_01.00.00_PRES.tar.gz
+    dest: /appli/LIVR/version1/
+
+- name: Unzip md2_01.00.00_PRES.tar.gz dans le répertoire nginx
+  unarchive:
+    src: files/md2_01.00.00_PRES.tar.gz
+    dest: /appli/projects/wikib/nginx/version1

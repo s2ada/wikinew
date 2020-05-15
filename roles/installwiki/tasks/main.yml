@@ -1,0 +1,62 @@
+- name: commande install.php
+  command: php /appli/projects/wikib/nginx/version1/wiki_devops/maintenance/install.php --confpath=/appli/projects/wikib/nginx/version1/wiki_devops --lang=fr --dbname=wikib --dbpass=password --dbport=3306 --dbserver=localhost --dbuser=userwikib --lang=fr --memory-limit=max --pass=password --scriptpath=/wikib wikib Admin
+
+- name: start nginx
+  service:
+    name: nginx
+    state: started
+
+- name: restart php-fpm
+  service:
+    name: php-fpm
+    state: restarted
+
+- name: restart mariadb
+  service:
+    name: mariadb
+    state: restarted
+
+# import des donnés
+
+- name: copier Donnees.xml
+  copy:
+    src: files/Donnees.xml
+    dest: /appli/projects/wikib/nginx/version1/wiki_devops/
+
+- name: commande importDump.php
+  command: php /appli/projects/wikib/nginx/version1/wiki_devops/maintenance/importDump.php  /appli/projects/wikib/nginx/version1/wiki_devops/Donnees.xml
+
+- name: commande rebuildrecentchanges.php
+  command: php /appli/projects/wikib/nginx/version1/wiki_devops/maintenance/rebuildrecentchanges.php
+
+# import des images
+
+- name: Unzip dump_image.tar.gz
+  unarchive:
+    src: files/dump_image.tar.gz
+    dest: /appli/projects/wikib/nginx/version1/data/
+
+- name: commande importImages.php
+  command: php /appli/projects/wikib/nginx/version1/wiki_devops/maintenance/importImages.php  /appli/projects/wikib/nginx/version1/data/images/
+
+# cookiesLocalSettings
+
+- name: Modifiy LocalSettings
+  template:
+    src: roles/installwiki/templates/new_LocalSettings.j2
+    dest: /appli/projects/wikib/nginx/version1/wiki_devops/LocalSettings.php
+
+- name: Modifiy php.ini
+  template:
+    src: roles/installwiki/templates/php.ini.j2
+    dest: /etc/php.ini
+
+- name: restart php-fpm
+  service:
+    name: php-fpm
+    state: restarted
+
+- name: start mariadb
+  service:
+    name: mariadb
+    state: started

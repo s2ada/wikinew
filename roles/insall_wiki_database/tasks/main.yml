@@ -1,0 +1,11 @@
+- name: create mediawiki Mariadb database
+  mysql_db:
+    name: wikib
+    state: present
+
+- name : create mediawiki mariadb user
+  mysql_user:
+    name: userwikib
+    host: localhost
+    password: password
+    priv: wikib.*:ALL

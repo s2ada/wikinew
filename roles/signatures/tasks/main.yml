@@ -1,0 +1,9 @@
+- name: Creer le dossier contenant la signature
+  file:
+    path: /etc/conf_centOS
+    state: directory
+
+- name: Creer la signature
+  file:
+    path: /etc/conf_centOS/md2_01.00.00_linux_cen7
+    state: touch
