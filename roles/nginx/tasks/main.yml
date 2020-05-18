@@ -1,7 +1,7 @@
-- name: update
-  yum:
-    name: '*'
-    state: latest
+#- name: update
+#  yum:
+#    name: '*'
+#    state: latest
 
 - name: Install nginx
   yum:
