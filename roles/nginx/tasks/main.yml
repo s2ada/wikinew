@@ -5,7 +5,7 @@
 
 - name: Install repo
   yum:
-    name: http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/
+    name: epel-release*rpm
     state: present
 
 
