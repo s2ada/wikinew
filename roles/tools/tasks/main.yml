@@ -8,3 +8,4 @@
       - firewalld
       - vim
       - psmisc
+      - wget
