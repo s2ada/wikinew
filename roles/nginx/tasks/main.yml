@@ -6,7 +6,7 @@
 - name: Add repository
   yum:
     name: epel-release
-    state: present
+    state: latest
 
 
 - name: Install nginx
