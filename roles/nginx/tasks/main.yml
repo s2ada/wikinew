@@ -3,16 +3,16 @@
 #    name: '*'
 #    state: latest
 
-- name: Add repository
-  yum_repository:
-    name: epel
-    description: EPEL YUM repo
-    baseurl: http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/
+#- name: Add repository
+#  yum_repository:
+#    name: epel
+#    description: EPEL YUM repo
+#    baseurl: http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/
 
 
 - name: Install nginx
   yum:
-    name: nginx
+    name: https://download-ib01.fedoraproject.org/pub/epel/7/SRPMS/Packages/n/nginx-1.16.1-1.el7.src.rpm
     state: present
 
 - name: change UID user nginx
