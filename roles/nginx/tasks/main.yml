@@ -3,9 +3,15 @@
 #    name: '*'
 #    state: latest
 
+- name: Install repo
+  yum:
+    name: http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/
+    state: present
+
+
 - name: Install nginx
   yum:
-    name: http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centOS-7-0.el7.ngx.noarch.rpm
+    name: nginx
     state: present
 
 - name: change UID user nginx
