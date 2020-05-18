@@ -3,16 +3,25 @@
 #    name: '*'
 #    state: latest
 
-#- name: Add repository
-#  yum_repository:
-#    name: epel
-#    description: EPEL YUM repo
-#    baseurl: http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/
+- name: Add repository
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+    state: present
 
+ - name: Import EPEL GPG key.
+    rpm_key:
+      key: /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+      state: present
+
+- name: Install remi repo.
+    yum:
+      name: http://rpms.famillecollet.com/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm
+      state: present
+    
 
 - name: Install nginx
   yum:
-    name: https://download-ib01.fedoraproject.org/pub/epel/7/SRPMS/Packages/n/nginx-1.16.1-1.el7.src.rpm
+    name:
     state: present
 
 - name: change UID user nginx
