@@ -4,10 +4,12 @@
 #    state: latest
 
 
+
 - name: Add repository
   yum:
     name: epel-release
     state: latest
+    disable_gpg_check: yes
 
 
 - name: Install nginx
