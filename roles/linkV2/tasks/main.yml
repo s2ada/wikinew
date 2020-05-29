@@ -1,0 +1,11 @@
+- name: Remove symlink
+  file:
+    path: "path=/usr/share/nginx/html/wikib"
+    state: absent
+
+- name: Créer le nouveau lien pour la V2
+  file:
+    path: /appli/projects/wikib/nginx/version2/wiki_devops_v2
+    dest: /usr/share/nginx/html/wikib
+    state: link
+    force: yes

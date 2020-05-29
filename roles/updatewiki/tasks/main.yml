@@ -1,0 +1,2 @@
+- name: commande update.php
+  command: php /appli/projects/wikib/nginx/version2/wiki_devops_v2/maintenance/update.php

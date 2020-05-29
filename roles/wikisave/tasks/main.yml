@@ -1,0 +1,46 @@
+- name: télécharger automysqlbackup
+  unarchive:
+    src: "{{ automysqlbackup_download_url }}"
+    dest: /tmp
+    creates: /opt/automysqlbackup
+    remote_src: true
+  register: installed
+  tags:
+    - automysqlbackup
+
+- name: Extraire automysqlbackup
+  unarchive: src=/tmp/automysqlbackup.tar.gz
+             dest=/opt/automysqlbackup
+             copy=no
+  changed_when: False
+
+- name: commande install.sh
+  command: /opt/automysqlbackup/./install.sh
+
+
+- name: définir permissions
+  file:
+    path: /usr/local/bin/
+    state: touch
+    mode: u+rwx,g+rx,a+rx
+  changed_when: false
+  tags:
+    - automysqlbackup
+
+- name: Creer le répertoire de backup
+  file:
+    path: /var/backup/db
+    state: directory
+    recurse: yes
+
+- name: commande install.sh
+  command: /usr/local/bin/./automysqlbackup
+
+
+- name: archiver wikib dans wikidata.tgz
+  archive:
+    path: /appli/data
+    dest: /appli/projects/wikib/nginx/version1/wikidata.tgz
+
+- name: commande dumpBackup.php
+  command: php /appli/projects/wikib/nginx/version1/wiki_devops/maintenance/dumpBackup.php --full > /appli/data/dump.xml

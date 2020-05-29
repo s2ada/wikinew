@@ -1,0 +1,55 @@
+- name: Supprimer php
+  package:
+    name: "{{ item }}"
+    state: absent
+  loop:
+      - php
+      - php-xml
+      - php-mysql
+      - php-gd
+      - php-intl
+      - php-mbstring
+      - php-fpm
+      - php-xcache
+      - php-pear-MDB2-Driver-mysql
+
+
+- name: ajouter le repo Rémi
+  yum:
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: present
+
+
+- name: configurer le repo
+  command: yum-config-manager --enable remi-php74
+
+
+- name: Install PHP
+  package:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+      - php74
+      - php-mcrypt
+      - php-cli
+      - php-gd
+      - php-curl
+      - php-mysql
+      - php-ldap
+      - php-zip
+      - php-fileinfo
+      - php-xml
+      - php-fpm
+      - php-mbstring
+
+- name: start php-fpm
+  service:
+    name: php-fpm.service
+    state: started
+
+- name: enable service php-fpm and ensure it is not masked
+  systemd:
+    name: php-fpm.service
+    enabled: yes
+    masked: no

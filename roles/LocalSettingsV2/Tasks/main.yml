@@ -1,0 +1,4 @@
+- name: Modifier le LocalSettings
+  template:
+    src: roles/installwiki/templates/LocalSettings.j2
+    dest: /appli/projects/wikib/nginx/version2/wiki_devops_v2/LocalSettings.php
