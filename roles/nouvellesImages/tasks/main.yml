@@ -17,3 +17,4 @@
   copy:
     src: /appli/projects/wikib/nginx/version2/wiki_devops_v2/resources/assets/LoGo/GRB-135.png
     dest: /appli/projects/wikib/nginx/version2/wiki_devops_v2/resources/assets/wiki.png
+    mode: u=rw, g=rw , o=rw
