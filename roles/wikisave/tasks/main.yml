@@ -6,7 +6,7 @@
 
 
 - name: commande install.sh
-  command: /opt/automysqlbackup/./install.sh
+  command: /opt/./install.sh
 
 
 - name: définir permissions
