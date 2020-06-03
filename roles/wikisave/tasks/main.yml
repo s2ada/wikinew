@@ -5,9 +5,10 @@
 
 
 - name: Extraire automysqlbackup
-  unarchive: src=/tmp/automysqlbackup.tar.gz
-             dest=/opt/automysqlbackup
-             copy=no
+  unarchive:
+    src= /tmp/automysqlbackup.tar.gz
+    dest= /opt
+    copy= no
   changed_when: False
 
 
