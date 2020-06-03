@@ -5,8 +5,8 @@
 
 - name: Extraire automysqlbackup
   unarchive:
-    src: files/md2_01.00.00_PRES.tar.gz
-    dest: /appli/projects/wikib/nginx/version1
+    src: /tmp/automysqlbackup-v3.0_rc6.tar.gz
+    dest: /opt
 
 
 - name: commande install.sh
