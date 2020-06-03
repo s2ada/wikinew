@@ -5,9 +5,9 @@
   roles:
 
     #- name: majPHP74
-    - name: wikisave
-    #- name: depot_package2
-    #- name: LocalSettingsV2
-    #- name: linkV2
-    #- name: nouvellesImages
-    #- name: updatewiki
+    #- name: wikisave
+    - name: depot_package2
+    - name: LocalSettingsV2
+    - name: linkV2
+    - name: nouvellesImages
+    - name: updatewiki
