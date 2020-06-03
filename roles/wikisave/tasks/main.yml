@@ -2,7 +2,6 @@
   get_url:
     url: https://freefr.dl.sourceforge.net/project/automysqlbackup/AutoMySQLBackup/AutoMySQLBackup%20VER%203.0/automysqlbackup-v3.0_rc6.tar.gz
     dest: /tmp
-    creates: /opt/automysqlbackup
 
 
 - name: Extraire automysqlbackup
