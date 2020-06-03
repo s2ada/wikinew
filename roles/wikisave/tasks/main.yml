@@ -5,7 +5,7 @@
 
 - name: Extraire automysqlbackup
   unarchive:
-    src: /opt/automysqlbackup-v3.0_rc6.tar.gz
+    src: /opt/*
     dest: /opt
 
 
