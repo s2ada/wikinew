@@ -1,6 +1,6 @@
 - name: Modifier le LocalSettings
   template:
-    src: roles/LocalSettingsV2/templates/LocalSettings.j2
+    src: roles/updatewiki/templates/LocalSettings.j2
     dest: /appli/projects/wikib/nginx/version2/wiki_devops_v2/LocalSettings.php
 
 - name: commande update.php
