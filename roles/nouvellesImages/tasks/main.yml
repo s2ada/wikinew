@@ -12,10 +12,8 @@
 - name: rename wiki en wiki off
   command: mv /appli/projects/wikib/nginx/version2/wiki_devops_v2/resources/assets/wiki.png /appli/projects/wikib/nginx/version2/wiki_devops_v2/resources/assets/wiki_off.png
 
----
 
 - name: Copier le nouveau logo et le renommer
   copy:
-    src: /appli/projects/wikib/nginx/version2/wiki_devops_v2/resources/assets/LoGo/GRB-135.png
+    src: files/GRB-135.png
     dest: /appli/projects/wikib/nginx/version2/wiki_devops_v2/resources/assets/wiki.png
-    mode: u=rw, g=rw , o=rw
